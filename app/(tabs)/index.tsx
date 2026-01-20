@@ -91,11 +91,11 @@ export default function HomeScreen() {
           alert('Photo library permission is required to select images.');
           return;
         }
+        // ✅ CORRECCIÓN: Actualizado para SDK 54
         result = await ImagePicker.launchImageLibraryAsync({
-          allowsEditing: true,
+          allowsMultipleSelection: false,
           quality: 1,
-          aspect: [1, 1],
-          mediaTypes: 'images' as any,
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
         });
       }
 
@@ -276,7 +276,7 @@ export default function HomeScreen() {
                             style={styles.previewConfirmGradient}
                           >
                             <CheckCircle size={moderateScale(18)} color={Colors.background} strokeWidth={2.5} />
-                            <Text style={styles.previewConfirmText}>{t('camera.analyzeNow')}</Text>
+                            <Text style={styles.previewConfirmText}>{t('camera.analyze')}</Text>
                           </LinearGradient>
                         </Pressable>
                       </View>
@@ -288,9 +288,7 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.footer}>
-            <Text style={styles.footerText}>
-              {t('home.poweredBy')}
-            </Text>
+            <Text style={styles.footerText}>POWERED BY AI</Text>
           </View>
         </View>
       </SafeAreaView>
